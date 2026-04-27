@@ -22,7 +22,10 @@ shell or use a `.env` file with [`bun --env-file`](https://bun.sh/docs/runtime/e
 | `BAMBU_PASSWORD` | Cloud examples | Bambu Lab account password |
 | `BAMBU_DEV_ID` | per-device Cloud examples + LAN | Printer serial (15 chars, e.g. `00M09B461100094`) |
 | `BAMBU_TASK_ID` | task-by-id examples | A print task id (any from `bun examples/cloud/list-tasks.ts`) |
+| `BAMBU_PROJECT_ID` | `get-project.ts` | A project id (any from `bun examples/cloud/list-projects.ts`) |
 | `BAMBU_PROJECT_INSTANCE_ID` | `get-printed-plates.ts` | A model instance id (integer) |
+| `BAMBU_USER_ID` | `get-profile.ts` | A user id (numeric) |
+| `BAMBU_MODEL_ID` | `get-profile.ts` (optional) | Narrows the profile to a specific model (e.g. `USf86740b8413939`) |
 | `BAMBU_LAN_IP` | LAN examples | Local IP of the printer |
 | `BAMBU_ACCESS_CODE` | LAN examples | 8-digit access code shown on the printer screen |
 
@@ -69,6 +72,15 @@ onboarding path.
 | [`cloud/get-my-task.ts`](./cloud/get-my-task.ts) | `client.getMyTask(taskId)` |
 | [`cloud/get-printed-plates.ts`](./cloud/get-printed-plates.ts) | `client.getPrintedPlates(instanceId)` |
 | [`cloud/get-device-task-notifications.ts`](./cloud/get-device-task-notifications.ts) | `client.getDeviceTaskNotifications()` |
+| [`cloud/get-project.ts`](./cloud/get-project.ts) | `client.getProject(projectId)` |
+| [`cloud/get-profile.ts`](./cloud/get-profile.ts) | `client.getProfile(userId, modelId?)` |
+
+### Cloud — Account
+
+| Example | Method |
+|---|---|
+| [`cloud/get-unread-message-count.ts`](./cloud/get-unread-message-count.ts) | `client.getUnreadMessageCount()` |
+| [`cloud/get-my-preferences.ts`](./cloud/get-my-preferences.ts) | `client.getMyPreferences()` |
 
 ### LAN — MQTT
 
