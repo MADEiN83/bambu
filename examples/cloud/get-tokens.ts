@@ -32,8 +32,8 @@ const client = await BambuClient.connect({
 const tokens = client.getTokens();
 
 console.log({
-  accessToken: tokens.accessToken.slice(0, 12) + "…",
-  refreshToken: tokens.refreshToken.slice(0, 12) + "…",
+  accessToken: `${tokens.accessToken.slice(0, 12)}…`,
+  refreshToken: `${tokens.refreshToken.slice(0, 12)}…`,
   expiresAt: new Date(tokens.expiresAt).toISOString(),
   refreshExpiresAt: new Date(tokens.refreshExpiresAt).toISOString(),
 });

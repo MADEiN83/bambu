@@ -7,7 +7,7 @@
 //   BAMBU_EMAIL='you@example.com' BAMBU_PASSWORD='xxx' bun examples/cloud/login-low-level.ts
 
 import { createInterface } from "node:readline/promises";
-import { BambuClient } from "@crazydev/bambu";
+import { BambuClient, type BambuTokens } from "@crazydev/bambu";
 
 const email = process.env.BAMBU_EMAIL;
 const password = process.env.BAMBU_PASSWORD;
@@ -20,7 +20,7 @@ if (!email || !password) {
 // Step 1 — start login
 const result = await BambuClient.login(email, password, "EU");
 
-let tokens;
+let tokens: BambuTokens;
 if (result.requiresVerifyCode) {
   // Step 2 — request a 2FA code
   await BambuClient.sendVerifyCode(email, "EU");
@@ -37,6 +37,6 @@ if (result.requiresVerifyCode) {
 }
 
 console.log("Tokens acquired:");
-console.log("  accessToken (truncated):", tokens.accessToken.slice(0, 12) + "…");
+console.log("  accessToken (truncated):", `${tokens.accessToken.slice(0, 12)}…`);
 console.log("  expiresAt:", new Date(tokens.expiresAt).toISOString());
 console.log("  refreshExpiresAt:", new Date(tokens.refreshExpiresAt).toISOString());

@@ -30,5 +30,7 @@ const devices = await client.devices();
 
 console.log(`Found ${devices.length} device(s):`);
 for (const d of devices) {
-  console.log(`- ${d.name} (${d.dev_product_name}) — id=${d.dev_id} online=${d.online} status=${d.print_status}`);
+  console.log(
+    `- ${d.name} (${d.dev_product_name}) — id=${d.dev_id} online=${d.online} status=${d.print_status}`,
+  );
 }

@@ -8,7 +8,7 @@
 //   bun examples/combo/cloud-then-lan.ts
 
 import { createInterface } from "node:readline/promises";
-import { BambuClient, LanClient, fileTokenStore } from "@crazydev/bambu";
+import { BambuClient, fileTokenStore, LanClient } from "@crazydev/bambu";
 
 const email = process.env.BAMBU_EMAIL;
 const password = process.env.BAMBU_PASSWORD;

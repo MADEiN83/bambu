@@ -25,5 +25,5 @@ const refreshed = await BambuClient.refreshTokens(cached.refreshToken, "EU");
 await store.save(refreshed);
 
 console.log("Tokens refreshed:");
-console.log("  accessToken (truncated):", refreshed.accessToken.slice(0, 12) + "…");
+console.log("  accessToken (truncated):", `${refreshed.accessToken.slice(0, 12)}…`);
 console.log("  expiresAt:", new Date(refreshed.expiresAt).toISOString());

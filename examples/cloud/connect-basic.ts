@@ -29,4 +29,7 @@ const client = await BambuClient.connect({
   },
 });
 
-console.log("Connected. Access token (truncated):", client.getTokens().accessToken.slice(0, 12) + "…");
+console.log(
+  "Connected. Access token (truncated):",
+  `${client.getTokens().accessToken.slice(0, 12)}…`,
+);
