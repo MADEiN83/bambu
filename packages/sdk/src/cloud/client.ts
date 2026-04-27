@@ -273,6 +273,16 @@ export class BambuClient {
     return res.hits ?? [];
   }
 
+  /**
+   * Device task notification status (badge counts on print job updates).
+   *
+   * Response shape is undocumented — returned as `unknown`; callers should
+   * narrow it themselves until a real payload is captured.
+   */
+  async getDeviceTaskNotifications(): Promise<unknown> {
+    return this.authedRequest("/user-service/my/message/device/taskstatus");
+  }
+
   /** Current tokens. Useful if you manage persistence yourself. */
   getTokens(): BambuTokens {
     return this.tokens;
