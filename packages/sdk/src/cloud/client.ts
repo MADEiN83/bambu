@@ -299,6 +299,18 @@ export class BambuClient {
     return this.authedRequest("/user-service/my/message/device/taskstatus");
   }
 
+  /**
+   * List which plates of a given model instance have already been printed.
+   *
+   * Response shape is not documented upstream — typed as `unknown` until a real
+   * payload is captured.
+   *
+   * @param instanceId Model instance id (integer, required).
+   */
+  async getPrintedPlates(instanceId: number): Promise<unknown> {
+    return this.authedRequest(`/user-service/my/task/printedplates?instanceId=${instanceId}`);
+  }
+
   /** Current tokens. Useful if you manage persistence yourself. */
   getTokens(): BambuTokens {
     return this.tokens;
