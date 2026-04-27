@@ -328,6 +328,23 @@ export class BambuClient {
     return this.authedRequest(`/user-service/my/task/printedplates?instanceId=${instanceId}`);
   }
 
+  /**
+   * Fetch a single task from the user-service by its `taskId`.
+   *
+   * Note: this is the `user-service` variant of get-task-by-id. The field set
+   * differs from the `iot-service` version — both endpoints expose different
+   * data and may coexist in the SDK. Response shape is not documented in
+   * `api.yaml`, hence the `unknown` return type.
+   *
+   * @example
+   * ```ts
+   * const task = await client.getMyTask("123456789");
+   * ```
+   */
+  async getMyTask(taskId: string): Promise<unknown> {
+    return this.authedRequest(`/user-service/my/task/${encodeURIComponent(taskId)}`);
+  }
+
   /** Current tokens. Useful if you manage persistence yourself. */
   getTokens(): BambuTokens {
     return this.tokens;
