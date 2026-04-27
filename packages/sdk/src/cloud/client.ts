@@ -274,6 +274,22 @@ export class BambuClient {
   }
 
   /**
+   * Fetch a single print task by its id (iot-service variant).
+   *
+   * Complements {@link tasks} which only returns a paginated list. The response
+   * shape is undocumented in `api.yaml`, so it is returned as `unknown` until
+   * a real payload is captured.
+   *
+   * @example
+   * ```ts
+   * const task = await client.getTaskById("123456789");
+   * ```
+   */
+  async getTaskById(taskId: string): Promise<unknown> {
+    return this.authedRequest(`/iot-service/api/user/task/${encodeURIComponent(taskId)}`);
+  }
+
+  /**
    * Device task notification status (badge counts on print job updates).
    *
    * Response shape is undocumented — returned as `unknown`; callers should
