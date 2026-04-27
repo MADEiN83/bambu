@@ -267,6 +267,23 @@ export class BambuClient {
     return res.devices.find((d) => d.dev_id === devId) ?? null;
   }
 
+  /**
+   * Fetch firmware version info and available updates for a device.
+   *
+   * Response shape is not documented in `api.yaml`; returned as `unknown` until
+   * a real payload is captured.
+   *
+   * @example
+   * ```ts
+   * const fw = await client.getDeviceFirmwareVersion("00M09B461100094");
+   * ```
+   */
+  async getDeviceFirmwareVersion(devId: string): Promise<unknown> {
+    return this.authedRequest(
+      `/iot-service/api/user/device/version?dev_id=${encodeURIComponent(devId)}`,
+    );
+  }
+
   /** Recent print tasks (most recent first). */
   async tasks(limit = 20): Promise<PrintTask[]> {
     const res = await this.authedRequest(`/user-service/my/tasks?limit=${limit}`);
