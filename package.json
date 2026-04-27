@@ -10,14 +10,16 @@
     "build": "bun run --filter '*' build",
     "typecheck": "bun run --filter '*' typecheck",
     "test": "bun test",
-    "lint": "bun run --filter '*' lint",
+    "lint": "biome check .",
+    "format": "biome format --write .",
     "try": "bun examples/cloud-test.ts"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.4.13",
     "@types/bun": "latest",
     "typescript": "^5.6.0"
   },
   "engines": {
-    "bun": ">=1.1.0"
+    "bun": ">=1.2.0"
   }
 }

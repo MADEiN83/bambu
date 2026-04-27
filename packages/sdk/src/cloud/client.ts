@@ -1,4 +1,12 @@
-import type { BambuDevice, BambuDeviceStatus, BambuProject, BambuStatusResponse, BambuTokens, PrintTask, Region } from "../types/index.js";
+import type {
+  BambuDevice,
+  BambuDeviceStatus,
+  BambuProject,
+  BambuStatusResponse,
+  BambuTokens,
+  PrintTask,
+  Region,
+} from "../types/index.js";
 import type { TokenStore } from "./token-store.js";
 
 const BASE_URLS: Record<Region, string> = {
@@ -190,7 +198,10 @@ export class BambuClient {
    * ```
    */
   static async login(email: string, password: string, region: Region = "EU"): Promise<LoginResult> {
-    const res = await unauthRequest(region, "/user-service/user/login", { account: email, password });
+    const res = await unauthRequest(region, "/user-service/user/login", {
+      account: email,
+      password,
+    });
     if (res.accessToken) {
       return { requiresVerifyCode: false, tokens: buildTokens(res) };
     }
@@ -206,7 +217,11 @@ export class BambuClient {
   }
 
   /** Low-level: complete login with the 2FA code received by email. */
-  static async loginWithCode(email: string, code: string, region: Region = "EU"): Promise<BambuTokens> {
+  static async loginWithCode(
+    email: string,
+    code: string,
+    region: Region = "EU",
+  ): Promise<BambuTokens> {
     const res = await unauthRequest(region, "/user-service/user/login", { account: email, code });
     if (!res.accessToken) throw new Error("Login failed");
     return buildTokens(res);
@@ -299,7 +314,9 @@ export class BambuClient {
    */
   async getProfile(userId: string, modelId?: string): Promise<unknown> {
     const query = modelId ? `?model_id=${encodeURIComponent(modelId)}` : "";
-    return this.authedRequest(`/iot-service/api/user/profile/${encodeURIComponent(userId)}${query}`);
+    return this.authedRequest(
+      `/iot-service/api/user/profile/${encodeURIComponent(userId)}${query}`,
+    );
   }
 
   /** Recent print tasks (most recent first). */

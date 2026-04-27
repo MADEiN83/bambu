@@ -20,7 +20,10 @@
       "import": "./dist/lan/index.js"
     }
   },
-  "files": ["dist", "README.md"],
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "keywords": [
     "bambu",
     "bambulab",
@@ -34,7 +37,7 @@
   "scripts": {
     "build": "bun build ./src/index.ts --outdir ./dist --target node --format esm && tsc --emitDeclarationOnly --outDir dist",
     "typecheck": "tsc --noEmit",
-    "lint": "tsc --noEmit"
+    "test": "bun test"
   },
   "dependencies": {
     "mqtt": "^5.10.0"
