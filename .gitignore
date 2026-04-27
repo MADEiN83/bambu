@@ -1,0 +1,16 @@
+node_modules
+dist
+.DS_Store
+*.log
+.env
+.env.local
+.bambu-tokens.json
+bambu-tokens.json
+.idea
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.example.json
+coverage
+*.tsbuildinfo
+.env
+CLAUDE.md

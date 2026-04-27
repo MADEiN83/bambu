@@ -1,0 +1,23 @@
+{
+  "name": "bambu-monorepo",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Unofficial Bambu Lab SDK & CLI for Node.js — monorepo",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "bun run --filter '*' build",
+    "typecheck": "bun run --filter '*' typecheck",
+    "test": "bun test",
+    "lint": "bun run --filter '*' lint",
+    "try": "bun examples/cloud-test.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5.6.0"
+  },
+  "engines": {
+    "bun": ">=1.1.0"
+  }
+}
