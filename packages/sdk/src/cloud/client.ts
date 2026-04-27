@@ -290,6 +290,18 @@ export class BambuClient {
     return res.projects ?? [];
   }
 
+  /**
+   * Fetch a user's printer profile (context, plates, materials).
+   *
+   * Calls `GET /iot-service/api/user/profile/{userId}`. The optional `modelId`
+   * narrows the profile to a specific model (e.g. `USf86740b8413939`).
+   * Response shape is undocumented upstream — typed as `unknown`.
+   */
+  async getProfile(userId: string, modelId?: string): Promise<unknown> {
+    const query = modelId ? `?model_id=${encodeURIComponent(modelId)}` : "";
+    return this.authedRequest(`/iot-service/api/user/profile/${encodeURIComponent(userId)}${query}`);
+  }
+
   /** Recent print tasks (most recent first). */
   async tasks(limit = 20): Promise<PrintTask[]> {
     const res = await this.authedRequest(`/user-service/my/tasks?limit=${limit}`);
