@@ -374,6 +374,16 @@ export class BambuClient {
     return this.authedRequest(`/iot-service/api/user/project/${encodeURIComponent(projectId)}`);
   }
 
+  /**
+   * Unread message counts by category (used for badges).
+   *
+   * Response shape is undocumented upstream — typed as `unknown` until a real
+   * payload is captured.
+   */
+  async getUnreadMessageCount(): Promise<unknown> {
+    return this.authedRequest("/user-service/my/message/count");
+  }
+
   /** Current tokens. Useful if you manage persistence yourself. */
   getTokens(): BambuTokens {
     return this.tokens;
