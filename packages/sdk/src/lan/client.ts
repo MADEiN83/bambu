@@ -59,10 +59,8 @@ export class LanClient {
   private async publish(payload: object): Promise<void> {
     if (!this.client) throw new Error("Not connected. Call connect() first.");
     return new Promise((resolve, reject) => {
-      this.client!.publish(
-        `device/${this.opts.serial}/request`,
-        JSON.stringify(payload),
-        (err) => (err ? reject(err) : resolve()),
+      this.client!.publish(`device/${this.opts.serial}/request`, JSON.stringify(payload), (err) =>
+        err ? reject(err) : resolve(),
       );
     });
   }

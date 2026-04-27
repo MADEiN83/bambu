@@ -1,14 +1,11 @@
 #!/usr/bin/env node
-import { BambuClient } from "@crazydev/bambu";
 
 const [, , cmd] = process.argv;
 
 async function main() {
   switch (cmd) {
     case "status": {
-      // TODO: load tokens from ~/.config/bambu/tokens.json
-      const client = new BambuClient();
-      void client;
+      // TODO: load tokens from ~/.config/bambu/tokens.json and instantiate BambuClient
       console.log("status — not implemented yet");
       break;
     }

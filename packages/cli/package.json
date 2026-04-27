@@ -6,13 +6,20 @@
   "bin": {
     "bbu": "./dist/cli.js"
   },
-  "files": ["dist", "README.md"],
-  "keywords": ["bambu", "bambulab", "cli", "3d-printing"],
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "keywords": [
+    "bambu",
+    "bambulab",
+    "cli",
+    "3d-printing"
+  ],
   "scripts": {
     "build": "bun build ./src/cli.ts --outdir ./dist --target node --format esm && tsc --emitDeclarationOnly --outDir dist",
     "build:bin": "bun build ./src/cli.ts --compile --outfile ./dist/bbu",
-    "typecheck": "tsc --noEmit",
-    "lint": "tsc --noEmit"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@crazydev/bambu": "workspace:*"
