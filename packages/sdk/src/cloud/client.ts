@@ -363,6 +363,17 @@ export class BambuClient {
     return this.authedRequest(`/user-service/my/task/${encodeURIComponent(taskId)}`);
   }
 
+  /**
+   * Fetch full project details by ID, including profiles, plates, materials,
+   * and upload URLs.
+   *
+   * Response shape is not documented in the public API; returns `unknown` until
+   * a real response can be captured and typed.
+   */
+  async getProject(projectId: string): Promise<unknown> {
+    return this.authedRequest(`/iot-service/api/user/project/${encodeURIComponent(projectId)}`);
+  }
+
   /** Current tokens. Useful if you manage persistence yourself. */
   getTokens(): BambuTokens {
     return this.tokens;
