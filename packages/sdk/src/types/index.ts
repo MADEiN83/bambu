@@ -68,6 +68,13 @@ export interface BambuStatusResponse {
   devices: BambuDeviceStatus[];
 }
 
+export interface BambuProject {
+  project_id: string;
+  name: string;
+  status: string;
+  create_time: string;
+}
+
 export interface AmsDetailMapping {
   ams: number;
   sourceColor: string;

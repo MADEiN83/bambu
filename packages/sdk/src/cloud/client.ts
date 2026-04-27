@@ -1,4 +1,4 @@
-import type { BambuDevice, BambuDeviceStatus, BambuStatusResponse, BambuTokens, PrintTask, Region } from "../types/index.js";
+import type { BambuDevice, BambuDeviceStatus, BambuProject, BambuStatusResponse, BambuTokens, PrintTask, Region } from "../types/index.js";
 import type { TokenStore } from "./token-store.js";
 
 const BASE_URLS: Record<Region, string> = {
@@ -282,6 +282,12 @@ export class BambuClient {
     return this.authedRequest(
       `/iot-service/api/user/device/version?dev_id=${encodeURIComponent(devId)}`,
     );
+  }
+
+  /** List all projects bound to the account. */
+  async listProjects(): Promise<BambuProject[]> {
+    const res = await this.authedRequest("/iot-service/api/user/project");
+    return res.projects ?? [];
   }
 
   /** Recent print tasks (most recent first). */
