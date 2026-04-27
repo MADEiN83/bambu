@@ -384,6 +384,16 @@ export class BambuClient {
     return this.authedRequest("/user-service/my/message/count");
   }
 
+  /**
+   * Authenticated user's MakerWorld preferences (uid, name, handle, avatar, settings).
+   *
+   * Response shape is not fully documented upstream — returned as `unknown` until
+   * a real payload is captured and typed.
+   */
+  async getMyPreferences(): Promise<unknown> {
+    return this.authedRequest("/design-user-service/my/preference");
+  }
+
   /** Current tokens. Useful if you manage persistence yourself. */
   getTokens(): BambuTokens {
     return this.tokens;
