@@ -7,8 +7,8 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "bun run --filter '*' build",
-    "typecheck": "bun run --filter '*' typecheck",
+    "build": "bun run --filter '@crazydev/bambu' build && bun run --filter '@crazydev/bambu-cli' build",
+    "typecheck": "bun run --filter '@crazydev/bambu' build && bun run --filter '*' typecheck",
     "test": "bun test",
     "lint": "biome check .",
     "format": "biome format --write .",
