@@ -1,30 +1,64 @@
 #!/usr/bin/env node
+import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+import { devices } from "./commands/devices.js";
+import { login } from "./commands/login.js";
+import { logout } from "./commands/logout.js";
+import { status } from "./commands/status.js";
 
-const [, , cmd] = process.argv;
+const pkgPath = join(dirname(fileURLToPath(import.meta.url)), "..", "package.json");
+const pkg = JSON.parse(readFileSync(pkgPath, "utf8")) as { version: string };
 
-async function main() {
+const HELP = `bbu — Bambu Lab CLI (v${pkg.version})
+
+Usage:
+  bbu <command> [args]
+
+Commands:
+  login              Interactive login (email + password + 2FA). Saves tokens to ~/.config/bambu/tokens.json
+  logout             Clear stored tokens
+  devices            List printers bound to the account
+  status [devId]     Show live status (all devices, or one if devId is provided)
+  help               Show this message
+  version            Print version
+
+Environment:
+  BAMBU_EMAIL        Skip the email prompt on \`bbu login\`
+  BAMBU_PASSWORD     Skip the password prompt on \`bbu login\`
+`;
+
+async function main(): Promise<void> {
+  const [, , cmd, ...args] = process.argv;
+
   switch (cmd) {
-    case "status": {
-      // TODO: load tokens from ~/.config/bambu/tokens.json and instantiate BambuClient
-      console.log("status — not implemented yet");
-      break;
-    }
-    case "login": {
-      console.log("login — not implemented yet");
-      break;
-    }
-    case "watch": {
-      console.log("watch — not implemented yet");
-      break;
-    }
+    case "login":
+      return login();
+    case "logout":
+      return logout();
+    case "devices":
+      return devices();
+    case "status":
+      return status(args[0]);
+    case "help":
+    case "--help":
+    case "-h":
+    case undefined:
+      console.log(HELP);
+      return;
+    case "version":
+    case "--version":
+    case "-v":
+      console.log(pkg.version);
+      return;
     default:
-      console.log("Usage: bbu <command>");
-      console.log("Commands: login, status, watch, devices, tasks");
+      console.error(`Unknown command: ${cmd}\n`);
+      console.log(HELP);
       process.exit(1);
   }
 }
 
 main().catch((err) => {
-  console.error(err);
+  console.error(err instanceof Error ? err.message : err);
   process.exit(1);
 });
